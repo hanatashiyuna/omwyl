@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { SafeAreaView, StatusBar, View } from 'react-native'
 import { Text } from 'react-native-paper';
 
-function Home({route}: any) {
+function Home({route}) {
 
   const {api} = route.params;
   const [token, setToken] = useState('');

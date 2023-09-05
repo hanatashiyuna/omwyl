@@ -8,20 +8,20 @@ import IconFontisto from 'react-native-vector-icons/Fontisto';
 const fullWidth = Dimensions.get('window').width;
 const fullHeight = Dimensions.get('window').height;
 
-function Signup({navigation}: any) {
+function Signup({navigation}) {
   const basicUrl = 'http://ims-api.viendong.edu.vn/api/v1';
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({UserId: '', Password: ''});
 
-  const handleInputUserId = (value: any) => {
+  const handleInputUserId = (value) => {
     setUser({...user, UserId: value});
   };
 
-  const handleInputPassword = (value: any) => {
+  const handleInputPassword = (value) => {
     setUser({...user, Password: value});
   };
 
-  const handleLogin = (userid: string, password: string) => {
+  const handleLogin = (userid, password) => {
     // setLoading(true);
     // if(userid.length == 0){
     //   axios.post((basicUrl + '/login'), {"userid": "2006010003", "pass": "123456", "type": "local"})
