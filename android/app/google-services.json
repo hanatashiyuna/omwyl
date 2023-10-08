@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "58345428160",
+    "firebase_url": "https://androidnew-ea07c-default-rtdb.firebaseio.com",
+    "project_id": "androidnew-ea07c",
+    "storage_bucket": "androidnew-ea07c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58345428160:android:a774b4da0de47bb9f44925",
+        "android_client_info": {
+          "package_name": "com.example.androidnew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58345428160-v4ml527c0tjhfvau7e48favet1ardfs4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPuhEJhZejPqBmNDRibUdofT0uOQj_Rdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58345428160-v4ml527c0tjhfvau7e48favet1ardfs4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58345428160:android:89ab4d26fd8d2f48f44925",
+        "android_client_info": {
+          "package_name": "com.omwyl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58345428160-v4ml527c0tjhfvau7e48favet1ardfs4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPuhEJhZejPqBmNDRibUdofT0uOQj_Rdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58345428160-v4ml527c0tjhfvau7e48favet1ardfs4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

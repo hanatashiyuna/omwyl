@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Button, Dialog, Portal, PaperProvider, Text } from 'react-native-paper';
 
-const showDialogs = (title: string, content: string) => {
+const showDialogs = (title, content) => {
   const [visible, setVisible] = React.useState(false);
 
   const showDialog = () => setVisible(true);

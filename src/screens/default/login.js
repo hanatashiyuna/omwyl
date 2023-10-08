@@ -4,12 +4,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native-paper';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
+import asyncStorage from '../../store/asyncStorage';
+import Loading from '../../components';
 
 const fullWidth = Dimensions.get('window').width;
 const fullHeight = Dimensions.get('window').height;
 
 function Login({navigation}) {
-  const basicUrl = 'http://ims-api.viendong.edu.vn/api/v1';
+  const basicUrl = 'http://ims-api-staging.viendong.edu.vn:8086';
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({UserId: '', Password: ''});
 
@@ -26,12 +28,16 @@ function Login({navigation}) {
     // if(userid.length == 0){
       axios.post((basicUrl + '/login'), {"userid": "2006010003", "pass": "123456", "type": "local"})
       .then(function(response){
-        navigation.navigate('Home', {api: response['data']});
+        asyncStorage.set_storage_data('login_status', 1);
+        asyncStorage.set_storage_data('accessToken', response['data']['token']);
+        asyncStorage.set_storage_data('dataDetail', response['data']);
+        navigation.navigate('home');
         setLoading(false);
       })
       .catch(function(error){
         console.log(error);
-        setTimeout(() => setLoading(false), 2000);
+        setLoading(false);
+        // setTimeout(() => setLoading(false), 2000);
       })
     // }else{
     //   setTimeout(() => setLoading(false), 2000);
@@ -42,18 +48,18 @@ function Login({navigation}) {
     <SafeAreaView>
       <StatusBar hidden/>
       {loading ? <View style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: fullWidth,
-        height: fullHeight,
-        backgroundColor: 'rgba(183, 255, 251, 1)',
-      }}>
-        <ActivityIndicator animating={true} />
-        <Text style={{paddingTop: 10}}>Get Data</Text>
-      </View> : <View style={styles.container}>
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: fullWidth,
+      height: fullHeight,
+      backgroundColor: 'rgba(183, 255, 251, 1)',
+    }}>
+      <ActivityIndicator animating={true} />
+      <Text style={{paddingTop: 10}}>Get Data</Text>
+    </View> : <View style={styles.container}>
         <ImageBackground 
-        source={require('../assets/background/Background.png')}
+        source={require('../../assets/background/Background.png')}
         resizeMode='cover'
         style={styles.background}>
           <View style={styles.containerLogin}>
@@ -103,7 +109,7 @@ function Login({navigation}) {
               <View style={{marginTop: 20, alignSelf: 'center', flexDirection: 'row'}}>
                 <Text>You don't have account? </Text>
                 <TouchableOpacity onPress={() => {
-                  navigation.navigate('Sign Up')
+                  navigation.navigate('signup')
                 }}>
                   <Text style={{color: 'rgb(0, 209, 255)'}}>Sign up</Text>
                 </TouchableOpacity>
@@ -158,7 +164,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(0, 209, 255)',
     alignSelf: 'center',
     borderRadius: 10,
-    paddingHorizontal: 90,
+    paddingHorizontal: 85,
     paddingVertical: 10
   },
   input: {

@@ -1,24 +1,36 @@
-import React from 'react';
-import Login from './src/screens/login';
-import Signup from './src/screens/signup';
-import Home from './src/screens/home';
+import React, {useEffect} from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import CloudMessage from './src/services/clouldMessage';
+import {PermissionsAndroid, Platform, StatusBar, UIManager} from 'react-native';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import {Provider as PaperProvider} from 'react-native-paper';
+import { CounterProvider } from './src/contexts/counter';
+import { ToastProvider } from './src/contexts/toastcontext';
+import RootStackNavigation from './src/navigators/RootStackNavigation';
 
-const Stack = createNativeStackNavigator();
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
+const queryClient = new QueryClient();
 
 function App() {
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator 
-      screenOptions={{headerShown: false}}
-      initialRouteName='Sign Up'>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name='Sign Up' component={Signup} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PaperProvider> 
+      <QueryClientProvider client={queryClient}>
+        <CounterProvider>
+          <ToastProvider>
+            <StatusBar translucent backgroundColor="rgba(0, 0, 0, 0.3)" />
+            <RootStackNavigation />
+            <CloudMessage />
+          </ToastProvider>
+        </CounterProvider>
+      </QueryClientProvider>
+    </PaperProvider>
   );
 }
 

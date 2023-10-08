@@ -4,12 +4,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import axios from 'axios';
 import { ActivityIndicator, TextInput } from 'react-native-paper';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
+import Loading from '../../components';
 
 const fullWidth = Dimensions.get('window').width;
 const fullHeight = Dimensions.get('window').height;
 
 function Signup({navigation}) {
-  const basicUrl = 'http://ims-api.viendong.edu.vn/api/v1';
+  const basicUrl = 'http://ims-api-staging.viendong.edu.vn';
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({UserId: '', Password: ''});
 
@@ -22,7 +23,7 @@ function Signup({navigation}) {
   };
 
   const handleLogin = (userid, password) => {
-    // setLoading(true);
+    setLoading(true);
     // if(userid.length == 0){
     //   axios.post((basicUrl + '/login'), {"userid": "2006010003", "pass": "123456", "type": "local"})
     //   .then(function(response){
@@ -37,22 +38,26 @@ function Signup({navigation}) {
     // }else{
     //   setTimeout(() => setLoading(false), 2000);
     // };
+    setTimeout(() => setLoading(false), 1500);
+    navigation.navigate('login');
   }
 
   return (
     <SafeAreaView>
       <StatusBar hidden/>
       {loading ? <View style={{
-        justifyContent: 'center',
-        width: fullWidth,
-        height: fullHeight,
-        backgroundColor: 'rgba(183, 255, 251, 1)',
-      }}>
-          <ActivityIndicator animating={true} />
-          <Text>Get Data</Text>
-      </View> : <View style={styles.container}>
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: fullWidth,
+      height: fullHeight,
+      backgroundColor: 'rgba(183, 255, 251, 1)',
+    }}>
+      <ActivityIndicator animating={true} />
+      <Text style={{paddingTop: 10}}>Get Data</Text>
+    </View> : <View style={styles.container}>
         <ImageBackground 
-        source={require('../assets/background/Background.png')}
+        source={require('../../assets/background/Background.png')}
         resizeMode='cover'
         style={styles.background}>
           <View style={styles.containerLogin}>
@@ -119,7 +124,7 @@ function Signup({navigation}) {
               <View style={{marginTop: 20, alignSelf: 'center', flexDirection: 'row'}}>
                 <Text>You alreally have account? </Text>
                 <TouchableOpacity onPress={() => {
-                  navigation.navigate('Login')
+                  navigation.navigate('login')
                 }}>
                   <Text style={{color: 'rgb(0, 209, 255)'}}>Login</Text>
                 </TouchableOpacity>
